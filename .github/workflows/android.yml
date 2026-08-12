@@ -21,8 +21,17 @@ jobs:
       - name: Install packages
         run: npm install
 
+      - name: Fix Vite permission
+        run: chmod +x node_modules/.bin/vite
+
       - name: Build Web
         run: npm run build
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
 
       - name: Setup Android
         uses: android-actions/setup-android@v3
