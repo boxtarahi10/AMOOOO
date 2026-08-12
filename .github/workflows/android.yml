@@ -36,6 +36,9 @@ jobs:
       - name: Setup Android
         uses: android-actions/setup-android@v3
 
+      - name: Capacitor Sync
+        run: npx cap sync android
+
       - name: Build APK
         run: |
           cd android
