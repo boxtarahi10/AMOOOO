@@ -1,0 +1,12 @@
+html,body,#root{
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:#0d0620;
+  color:white;
+  font-family:Tahoma,sans-serif;
+}

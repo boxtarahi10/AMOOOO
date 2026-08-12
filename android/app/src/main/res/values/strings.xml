@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Abumirza</string>
+    <string name="title_activity_main">Abumirza</string>
+    <string name="package_name">com.pixelprofix.abumirza</string>
+    <string name="custom_url_scheme">com.pixelprofix.abumirza</string>
+</resources>
