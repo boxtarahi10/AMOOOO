@@ -21,8 +21,10 @@ jobs:
       - name: Install packages
         run: npm install
 
-      - name: Fix Vite permission
-        run: chmod +x node_modules/.bin/vite
+      - name: Fix executable permissions
+        run: |
+          chmod +x node_modules/.bin/vite || true
+          chmod +x node_modules/.bin/cap || true
 
       - name: Build Web
         run: npm run build
@@ -37,7 +39,9 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Capacitor Sync
-        run: npx cap sync android
+        run: |
+          chmod +x node_modules/.bin/cap
+          ./node_modules/.bin/cap sync android
 
       - name: Build APK
         run: |
