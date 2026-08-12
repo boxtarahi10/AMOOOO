@@ -10,24 +10,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
+
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          cache: npm
+
 
       - name: Install packages
         run: npm install
 
-      - name: Fix executable permissions
+
+      - name: Fix permissions
         run: |
           chmod +x node_modules/.bin/vite || true
           chmod +x node_modules/.bin/cap || true
 
+
       - name: Build Web
         run: npm run build
+
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -35,22 +42,31 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Setup Android
+
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+
+
+      - name: Check Capacitor
+        run: |
+          node -v
+          npx cap --version
+
 
       - name: Capacitor Sync
         run: |
-          chmod +x node_modules/.bin/cap
           ./node_modules/.bin/cap sync android
 
-      - name: Build APK
+
+      - name: Build Debug APK
         run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
 
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug-apk
+          name: AMOOOO-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
